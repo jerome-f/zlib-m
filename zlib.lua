@@ -15,24 +15,26 @@ files  {
   "compress.c",
   "crc32.c",
   "deflate.c",
+  "gzlib.c",
   "gzread.c",
   "gzwrite.c",
   "infback.c",
   "inffast.c",
   "inflate.c",
   "inftrees.c",
-  "ioapi.c",
   "trees.c",
   "uncompr.c",
-  "unzip.c",
-  "zip.c",
   "zutil.c",
+
+  "contrib/minizip/ioapi.c",
+  "contrib/minizip/unzip.c",
+  "contrib/minizip/zip.c",
 }
 
 if (_PLATFORM_ANDROID) then
-end
-
-if (_PLATFORM_COCOA) then
+  -- Use fopen, ftello and fseeko instead of the 64 bit counter-parts. This can be removed once RTC targets an android
+  -- platform greater than or equal to API 24 which does implement this
+  defines { "IOAPI_NO_64" }
 end
 
 if (_PLATFORM_IOS) then
@@ -48,7 +50,4 @@ if (_PLATFORM_WINDOWS) then
 end
 
 if (_PLATFORM_WINUWP) then
-  defines {
-    "_CRT_SECURE_NO_WARNINGS",
-  }
 end

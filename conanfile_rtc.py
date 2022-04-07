@@ -3,10 +3,10 @@ from conans import ConanFile
 
 class ZlibConan(ConanFile):
     name = "zlib"
-    version = "1.2.11"
-    url = "https://devtopia.esri.com/3rdparty/zlib/tree/runtimecore"
+    version = "1.2.12"
+    url = "https://github.com/Esri/zlib/tree/runtimecore"
     license = "http://zlib.net/zlib_license.html"
-    description = "Lossless data-compression library."
+    description = "A massively spiffy yet delicately unobtrusive compression library."
 
     # RTC specific triple
     settings = "platform_architecture_target"
@@ -16,7 +16,7 @@ class ZlibConan(ConanFile):
         relative = "3rdparty/zlib/"
 
         # headers
-        self.copy("*.h*", src=base, dst=relative)
+        self.copy("*.h", src=base, dst=relative)
 
         # libraries
         output = "output/" + str(self.settings.platform_architecture_target) + "/staticlib"
