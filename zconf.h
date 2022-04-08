@@ -8,6 +8,18 @@
 #ifndef ZCONF_H
 #define ZCONF_H
 
+// RTC changes begin
+#define Z_PREFIX 1 // For zlib, we want to have unique symbols to prevent collisions or picking up system zlib
+
+#if defined(RTC_WINDOWS_FAMILY)
+#define ZLIB_WINAPI 1
+
+#else // unix
+#define HAVE_UNISTD_H 1
+#define HAVE_STDARG_H 1
+#endif // defined(RTC_WINDOWS_FAMILY)
+// RTC changes end
+
 /*
  * If you *really* need a unique prefix for all types and library functions,
  * compile with -DZ_PREFIX. The "standard" zlib should be compiled without it.
